@@ -1,0 +1,8 @@
+target 'VideoPlayer' do
+pod 'AFNetworking'
+pod 'MJRefresh'
+pod 'MJExtension'
+pod 'SDWebImage'
+pod 'MBProgressHUD'
+pod 'Masonry'
+end

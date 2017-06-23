@@ -1,0 +1,33 @@
+//
+//  PrefixHeader.pch
+//  wecastshopping
+//
+//  Created by 陈阳阳 on 2017/4/24.
+//  Copyright © 2017年 cyy. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Masonry.h"
+#import "CategoryHeader.h"
+#import "NetworkTool.h"
+#import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
+
+#endif /* PrefixHeader_pch */
+
+
+#define ScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define SystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#define CYLog(FORMAT, ...) fprintf(stderr,"%s      %s : %d\n",[[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String], [[[NSString stringWithUTF8String:__PRETTY_FUNCTION__] lastPathComponent] UTF8String], __LINE__)
+
+
+#define LoginNotification @"LoginNotification" // 登录通知
+
