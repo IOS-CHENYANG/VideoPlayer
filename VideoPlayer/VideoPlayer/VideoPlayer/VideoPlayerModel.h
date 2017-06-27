@@ -14,6 +14,8 @@
 @property (nonatomic,strong) NSString *title;
 // 播放地址
 @property (nonatomic,strong) NSURL  *playUrl;
+// 封面
+@property (nonatomic,strong) NSString *cover;
 // 清晰度
 @property (nonatomic,strong) NSDictionary *definitionDict;
 

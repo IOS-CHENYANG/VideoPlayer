@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoPlayerControlDelegate.h"
+
+@interface VideoPlayerSlider : UISlider
+
+@end
 
 @interface VideoPlayerControl : UIControl
+
+@property (nonatomic,assign) BOOL isFullScreen;
+
+@property (nonatomic,weak) id <VideoPlayerControlDelegate> delegate;
+
+//@property (nonatomic,copy) void (^play) ();
+//@property (nonatomic,copy) void (^pause) ();
 
 @end

@@ -8,6 +8,7 @@
 
 #import "VideoPlayerView.h"
 #import <AVFoundation/AVFoundation.h>
+
 #import "VideoPlayerControl.h"
 #import "VideoPlayerModel.h"
 
@@ -17,21 +18,14 @@
 @property (nonatomic,strong) AVPlayerItem  *playerItem;
 @property (nonatomic,strong) AVPlayer      *player;
 @property (nonatomic,strong) AVPlayerLayer *playerLayer;
-@property (nonatomic,strong) id timeObserver;
+@property (nonatomic,weak)   id timeObserver;
 
-@property (nonatomic,strong) UIControl *playerControl;
+@property (nonatomic,strong) UIControl     *playerControl;
 @property (nonatomic,strong) VideoPlayerModel *playerModel;
 
 @end
 
 @implementation VideoPlayerView
-
-//- (instancetype)init {
-//    self = [super init];
-//    if (self) {
-//    }
-//    return self;
-//}
 
 - (void)dealloc {
     NSLog(@"--------------- VideoPlayerView dealloc ---------------");
@@ -40,17 +34,13 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.playerLayer.frame = self.bounds;
-    self.playerControl.frame = self.bounds;
+    if (self.playerControl) {        
+        self.playerControl.frame = self.bounds;
+    }
 }
 
 - (void)configPlayerWithControl:(UIControl *)control Model:(VideoPlayerModel *)model {
-    if (control) {
-        self.playerControl = control;
-    }else {
-        VideoPlayerControl *control = [[VideoPlayerControl alloc]init];
-        self.playerControl = control;
-    }
-    [self addSubview:self.playerControl];
+    
     self.playerModel = model;
     self.backgroundColor = [UIColor blackColor];
     self.urlAsset = [AVURLAsset assetWithURL:self.playerModel.playUrl];
@@ -58,6 +48,33 @@
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     [self.layer addSublayer:self.playerLayer];
+    if (control) {
+        self.playerControl = control;
+        [self addSubview:self.playerControl];
+    }
+
+}
+
+- (void)setVideoGravity:(VideoGravity)videoGravity {
+    switch (videoGravity) {
+        case VideoGravityResize:
+        {
+            self.playerLayer.videoGravity = AVLayerVideoGravityResize;
+        }
+            break;
+        case VideoGravityResizeAspect:
+        {
+            self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+        }
+            break;
+        case VideoGravityResizeAspectFill:
+        {
+            self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)play {

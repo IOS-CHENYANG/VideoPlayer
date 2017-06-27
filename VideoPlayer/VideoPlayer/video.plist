@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/5/15/0F/00000366964/b1ee32e9f6fe4f9ba81d3d8fa72cb3b6_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484032381430.jpg</string>
+		<key>title</key>
+		<string>[朝闻天下]土耳其 现场视频记录伊斯坦布尔爆炸事件</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/A/89/97/00000367012/a4db8e88e24c4caf9c07ceb506ac34a3_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484032478212.jpg</string>
+		<key>title</key>
+		<string>[朝闻天下]新闻观察 朴槿惠遭弹劾 弹劾案虽通过 韩国乱局能否平息</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/1/C7/47/00000109149/686ea082999e4b048a417b33308fe5e9_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484127778945.jpg</string>
+		<key>title</key>
+		<string>中国共产党第十八届中央委员会第六次全体会议公报</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/C/07/0A/00000366988/6187a4e59e794e1bb314cdc85b998124_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484126474624.jpg</string>
+		<key>title</key>
+		<string>[第一时间]打击网络电信诈骗 江苏淮安：以电视栏目名义诈骗 先缴费再“领奖”</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/3/65/46/00000367033/579cba5030644767b4b36e656fd83bbc_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484126454051.jpg</string>
+		<key>title</key>
+		<string>[第一时间]关注冰雪旅游 黑龙江漠河：赏冰玩雪 感受北国风光</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/2/74/B4/00000367027/7c9aa498cf4943aaaa975dbc9b4f22cd_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484032461025.jpg</string>
+		<key>title</key>
+		<string>[第一时间]2016央视财经论坛暨上市公司峰会今日召开</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/E/E5/EC/00000366994/ed6d2dfd59234a109606ea2f3fcfe009_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484032435936.jpg</string>
+		<key>title</key>
+		<string>[朝闻天下]叙利亚 极端组织攻入古城巴尔米拉</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/A/A1/2D/00000367039/58e0db6bb1f14a0e9b79c9c8bd78ab45_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484032426023.jpg</string>
+		<key>title</key>
+		<string>[第一时间]关注冰雪旅游 黑龙江漠河：吃农家菜睡热炕头 体验地道东北生活</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/0/B3/F9/00000367087/2661176a9fe84d91a4c8750a679c519b_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484127982837.jpg</string>
+		<key>title</key>
+		<string>[第一时间]福建 候鸟越冬</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/4/63/11/00000366985/15efc34a7a3a4d209742d2f45e3b112a_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484127972723.jpg</string>
+		<key>title</key>
+		<string>[朝闻天下]新闻观察 阿勒颇收复在即 叙战事拐点将至</string>
+	</dict>
+	<dict>
+		<key>url</key>
+		<string>http://otv-vod.yod.cn/otv/you_video/7/68/C3/00000366961/de48a4d6a39b44309d3badb2e556a473_850K.m3u8</string>
+		<key>cover</key>
+		<string>http://you-test-res.oss-cn-hangzhou.aliyuncs.com/poster/1484127789077.jpg</string>
+		<key>title</key>
+		<string>[第一时间]贵州贵阳：违法停车 竟拆下车牌躲避处罚</string>
+	</dict>
+</array>
+</plist>

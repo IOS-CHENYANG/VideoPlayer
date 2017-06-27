@@ -21,11 +21,9 @@
 // 缓冲进度条
 @property (nonatomic,strong) UIProgressView *progressView;
 // 当前播放进度
-@property (nonatomic,strong) UISlider *slider;
+@property (nonatomic,strong) VideoPlayerSlider *slider;
 // 全屏按钮
 @property (nonatomic,strong) UIButton *fullScreenButton;
-// 锁定屏幕方向按钮
-@property (nonatomic,strong) UIButton *lockButton;
 // 加载菊花
 @property (nonatomic,strong) UIActivityIndicatorView *activityIndicatorView;
 // 返回按钮
@@ -51,7 +49,7 @@
         [self addSubview:self.placeholderImageView];
         [self addSubview:self.topPanelImageView];
         [self addSubview:self.bottomPanelImageView];
-        [self addSubview:self.lockButton];
+//        [self addSubview:self.lockButton];
         [self addSubview:self.activityIndicatorView];
         
         [self.topPanelImageView addSubview:self.backButton];
@@ -64,15 +62,70 @@
         [self.bottomPanelImageView addSubview:self.totalTimeLabel];
         [self.bottomPanelImageView addSubview:self.fullScreenButton];
         
-        [self makeSubViewsConstraints];
+//        [self makeSubViewsConstraints];
         
-        UITapGestureRecognizer *single = [UITapGestureRecognizer alloc];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
+}
+
++ (BOOL)requiresConstraintBasedLayout
+{
+    return YES;
+}
+
+- (void)updateConstraints {
+    
+    NSLog(@"----------- updateConstraints -----------");
+    if (self.isFullScreen) {
+//        [self.topPanelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.mas_top).offset(0);
+//            make.leading.and.trailing.equalTo(self);
+//            make.height.mas_equalTo(44);
+//        }];
+
+        NSLog(@"-----全屏 ---------------");
+        
+    }else {
+        
+        [self.bottomPanelImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(39);
+            make.leading.trailing.equalTo(self);
+            make.bottom.equalTo(self);
+        }];
+        [self.playButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(36);
+            make.left.equalTo(self.bottomPanelImageView.mas_left).offset(6);
+            make.centerY.equalTo(self.bottomPanelImageView.mas_centerY);
+        }];
+        [self.fullScreenButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(18);
+            make.right.equalTo(self.bottomPanelImageView.mas_right).offset(-12);
+            make.centerY.equalTo(self.bottomPanelImageView.mas_centerY);
+        }];
+        [self.totalTimeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(12);
+            make.centerY.equalTo(self.fullScreenButton.mas_centerY);
+            make.right.equalTo(self.fullScreenButton.mas_left).offset(-12);
+        }];
+        [self.currentTimeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(12);
+            make.centerY.equalTo(self.fullScreenButton.mas_centerY);
+            make.right.equalTo(self.totalTimeLabel.mas_left).offset(0);
+            make.left.equalTo(self.slider.mas_right).offset(12);
+        }];
+        
+        [self.slider mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.playButton.mas_right).offset(12);
+            make.centerY.equalTo(self.playButton.mas_centerY);
+            make.right.equalTo(self.currentTimeLabel.mas_left).offset(-12);
+        }];
+    }
+    
+    [super updateConstraints];
 }
 
 #pragma mark - 响应事件
@@ -89,6 +142,17 @@
 - (void)playButtonClick:(UIButton *)sender {
     sender.selected = !sender.selected;
     NSLog(@"播放按钮");
+    if (sender.selected) {
+        [sender setImage:[UIImage imageNamed:@"Video_player_play_"] forState:UIControlStateNormal];
+        if ([self.delegate respondsToSelector:@selector(pause:)]) {
+            [self.delegate pause:sender];
+        }
+    }else {
+        [sender setImage:[UIImage imageNamed:@"Video_player_pause_"] forState:UIControlStateNormal];
+        if ([self.delegate respondsToSelector:@selector(play:)]) {
+            [self.delegate play:sender];
+        }
+    }
 }
 
 - (void)sliderTouchBegin:(UISlider *)sender {
@@ -105,6 +169,9 @@
 
 - (void)fullScreenButtonClick:(UIButton *)sender {
     NSLog(@"全屏按钮");
+    if ([self.delegate respondsToSelector:@selector(fullscreen:)]) {
+        [self.delegate fullscreen:sender];
+    }
 }
 
 - (void)appDidEnterBackground {
@@ -122,13 +189,12 @@
 #pragma mark - 设置约束
 
 - (void)makeSubViewsConstraints {
+    
+    
+    
+    
     [self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
-    }];
-    [self.topPanelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(0);
-        make.leading.and.trailing.equalTo(self);
-        make.height.mas_equalTo(50);
     }];
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.topPanelImageView.mas_leading).offset(10);
@@ -140,6 +206,20 @@
         make.centerY.equalTo(self.backButton.mas_centerY);
         make.trailing.equalTo(self.topPanelImageView);
     }];
+    
+//    [self.bottomPanelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        
+//    }];
+}
+
+- (void)updateSubViewsConstraints {
+    
+    [self.topPanelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(0);
+        make.leading.and.trailing.equalTo(self);
+        make.height.mas_equalTo(44);
+    }];
+
 }
 
 #pragma mark - 懒加载
@@ -156,7 +236,7 @@
     if (!_topPanelImageView) {
         _topPanelImageView = [[UIImageView alloc]init];
         _topPanelImageView.userInteractionEnabled = YES;
-        _topPanelImageView.image = [UIImage imageNamed:@"ZFPlayer_top_shadow"];
+        _topPanelImageView.image = [UIImage imageNamed:@"Video_player_mask_"];
     }
     return _topPanelImageView;
 }
@@ -165,20 +245,21 @@
     if (!_bottomPanelImageView) {
         _bottomPanelImageView = [[UIImageView alloc]init];
         _bottomPanelImageView.userInteractionEnabled = YES;
-        _bottomPanelImageView.image = [UIImage imageNamed:@"ZFPlayer_bottom_shadow"];
+        _bottomPanelImageView.image = [UIImage imageNamed:@"Video_player_mask_"];
     }
     return _bottomPanelImageView;
 }
 
-- (UIButton *)lockButton {
-    if (!_lockButton) {
-        _lockButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_lockButton setImage:[UIImage imageNamed:@"ZFPlayer_unlock-nor"] forState:UIControlStateNormal];
-        [_lockButton setImage:[UIImage imageNamed:@"ZFPlayer_lock-nor"] forState:UIControlStateSelected];
-        [_lockButton addTarget:self action:@selector(lockButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _lockButton;
-}
+// 锁定屏幕方向按钮
+//- (UIButton *)lockButton {
+//    if (!_lockButton) {
+//        _lockButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_lockButton setImage:[UIImage imageNamed:@"ZFPlayer_unlock-nor"] forState:UIControlStateNormal];
+//        [_lockButton setImage:[UIImage imageNamed:@"ZFPlayer_lock-nor"] forState:UIControlStateSelected];
+//        [_lockButton addTarget:self action:@selector(lockButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _lockButton;
+//}
 
 - (UIActivityIndicatorView *)activityIndicatorView {
     if (!_activityIndicatorView) {
@@ -208,8 +289,7 @@
 - (UIButton *)playButton {
     if (!_playButton) {
         _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playButton setImage:[UIImage imageNamed:@"ZFPlayer_play"] forState:UIControlStateNormal];
-        [_playButton setImage:[UIImage imageNamed:@"ZFPlayer_pause"] forState:UIControlStateSelected];
+        [_playButton setImage:[UIImage imageNamed:@"Video_player_pause_"] forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playButton;
@@ -221,6 +301,8 @@
         _currentTimeLabel.textColor = [UIColor whiteColor];
         _currentTimeLabel.font = [UIFont systemFontOfSize:12];
         _currentTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _currentTimeLabel.text = @"00:00";
+        _currentTimeLabel.backgroundColor = [UIColor redColor];
     }
     return _currentTimeLabel;
 }
@@ -236,8 +318,8 @@
 
 - (UISlider *)slider {
     if (!_slider) {
-        _slider = [[UISlider alloc]init];
-        [_slider setThumbImage:[UIImage imageNamed:@"ZFPlayer_slider"] forState:UIControlStateNormal];
+        _slider = [[VideoPlayerSlider alloc]init];
+        [_slider setThumbImage:[UIImage imageNamed:@"Video_player_point_higlight_"] forState:UIControlStateNormal];
         _slider.minimumValue = 0;
         _slider.maximumValue = 1;
         _slider.minimumTrackTintColor = [UIColor whiteColor];
@@ -252,9 +334,11 @@
 - (UILabel *)totalTimeLabel {
     if (!_totalTimeLabel) {
         _totalTimeLabel = [[UILabel alloc]init];
-        _totalTimeLabel.textColor = [UIColor whiteColor];
+        _totalTimeLabel.textColor = [UIColor grayColor];
         _totalTimeLabel.font = [UIFont systemFontOfSize:12];
         _totalTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _totalTimeLabel.text = @"/00:00";
+        _totalTimeLabel.backgroundColor = [UIColor greenColor];
     }
     return _totalTimeLabel;
 }
@@ -262,11 +346,28 @@
 - (UIButton *)fullScreenButton {
     if (!_fullScreenButton) {
         _fullScreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_fullScreenButton setImage:[UIImage imageNamed:@"ZFPlayer_fullscreen"] forState:UIControlStateNormal];
-        [_fullScreenButton setImage:[UIImage imageNamed:@"ZFPlayer_shrinkscreen"] forState:UIControlStateNormal];
+        [_fullScreenButton setImage:[UIImage imageNamed:@"fullscreen_ico_"] forState:UIControlStateNormal];
+        [_fullScreenButton setImage:[UIImage imageNamed:@"Video_player_shrink_"] forState:UIControlStateSelected];
         [_fullScreenButton addTarget:self action:@selector(fullScreenButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _fullScreenButton;
+}
+
+@end
+
+@implementation VideoPlayerSlider
+
+// 解决UISlider两边的空隙
+- (CGRect)thumbRectForBounds:(CGRect)bounds trackRect:(CGRect)rect value:(float)value
+{
+    rect.origin.x = rect.origin.x - 4;
+    rect.size.width = rect.size.width + 8;
+    return [super thumbRectForBounds:bounds trackRect:rect value:value];
+}
+
+- (CGRect)trackRectForBounds:(CGRect)bounds {
+    bounds = [super trackRectForBounds:bounds]; // 必须通过调用父类的trackRectForBounds 获取一个 bounds 值，否则 Autolayout 会失效，UISlider 的位置会跑偏。
+    return CGRectMake(bounds.origin.x, bounds.origin.y - 2, bounds.size.width, 4);
 }
 
 @end

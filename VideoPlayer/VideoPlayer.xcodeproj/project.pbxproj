@@ -24,6 +24,13 @@
 		A947CC471EFCEDAD00728BDE /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A947CC411EFCEDAD00728BDE /* UIButton+Extension.m */; };
 		A947CC481EFCEDAD00728BDE /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A947CC431EFCEDAD00728BDE /* UIColor+Extension.m */; };
 		A947CC491EFCEDAD00728BDE /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A947CC451EFCEDAD00728BDE /* UIView+Extension.m */; };
+		A947CC521EFCF8BF00728BDE /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947CC4D1EFCF8BF00728BDE /* BaseNavigationController.m */; };
+		A947CC541EFCF8BF00728BDE /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A947CC511EFCF8BF00728BDE /* SuperViewController.m */; };
+		A994C7B61F009B620058C8A1 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A994C7B51F009B620058C8A1 /* VideoListViewController.m */; };
+		A994C7B91F009C510058C8A1 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A994C7B81F009C510058C8A1 /* PlayViewController.m */; };
+		A994C7BB1F009DE80058C8A1 /* video.plist in Resources */ = {isa = PBXBuildFile; fileRef = A994C7BA1F009DE80058C8A1 /* video.plist */; };
+		A994C7BE1F00A5BC0058C8A1 /* VideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A994C7BD1F00A5BC0058C8A1 /* VideoListCell.m */; };
+		A994C7C61F00BB580058C8A1 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A994C7C51F00BB580058C8A1 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +88,22 @@
 		A947CC441EFCEDAD00728BDE /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		A947CC451EFCEDAD00728BDE /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		A947CC4A1EFCEE0F00728BDE /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		A947CC4C1EFCF8BF00728BDE /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		A947CC4D1EFCF8BF00728BDE /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		A947CC501EFCF8BF00728BDE /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
+		A947CC511EFCF8BF00728BDE /* SuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperViewController.m; sourceTree = "<group>"; };
+		A994C7B41F009B620058C8A1 /* VideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
+		A994C7B51F009B620058C8A1 /* VideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListViewController.m; sourceTree = "<group>"; };
+		A994C7B71F009C510058C8A1 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		A994C7B81F009C510058C8A1 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		A994C7BA1F009DE80058C8A1 /* video.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = video.plist; sourceTree = "<group>"; };
+		A994C7BC1F00A5BC0058C8A1 /* VideoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListCell.h; sourceTree = "<group>"; };
+		A994C7BD1F00A5BC0058C8A1 /* VideoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListCell.m; sourceTree = "<group>"; };
+		A994C7BF1F00B58C0058C8A1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A994C7C11F00B5AA0058C8A1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A994C7C31F00B5C10058C8A1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A994C7C51F00BB580058C8A1 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		A994C7C81F014C380058C8A1 /* VideoPlayerControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerControlDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A994C7C61F00BB580058C8A1 /* VideoToolbox.framework in Frameworks */,
 				4C68580BBF489AE21D3D9433 /* libPods-VideoPlayer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +136,10 @@
 		3CA9336C96B2169D5D20212D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A994C7C51F00BB580058C8A1 /* VideoToolbox.framework */,
+				A994C7C31F00B5C10058C8A1 /* MediaPlayer.framework */,
+				A994C7C11F00B5AA0058C8A1 /* CoreMedia.framework */,
+				A994C7BF1F00B58C0058C8A1 /* AVFoundation.framework */,
 				26F6B52F9ED513287682460F /* libPods-VideoPlayer.a */,
 			);
 			name = Frameworks;
@@ -142,6 +170,7 @@
 		A947CBFA1EFCEC7600728BDE /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				A947CC4B1EFCF8BF00728BDE /* Base */,
 				A947CC3C1EFCEDAD00728BDE /* Category */,
 				A947CC381EFCEDA700728BDE /* NetworkTool */,
 				A947CC2E1EFCED9F00728BDE /* VideoPlayer */,
@@ -149,10 +178,17 @@
 				A947CBFF1EFCEC7600728BDE /* AppDelegate.m */,
 				A947CC011EFCEC7600728BDE /* ViewController.h */,
 				A947CC021EFCEC7600728BDE /* ViewController.m */,
+				A994C7B41F009B620058C8A1 /* VideoListViewController.h */,
+				A994C7B51F009B620058C8A1 /* VideoListViewController.m */,
+				A994C7BC1F00A5BC0058C8A1 /* VideoListCell.h */,
+				A994C7BD1F00A5BC0058C8A1 /* VideoListCell.m */,
+				A994C7B71F009C510058C8A1 /* PlayViewController.h */,
+				A994C7B81F009C510058C8A1 /* PlayViewController.m */,
 				A947CC041EFCEC7600728BDE /* Main.storyboard */,
 				A947CC071EFCEC7600728BDE /* Assets.xcassets */,
 				A947CC091EFCEC7600728BDE /* LaunchScreen.storyboard */,
 				A947CC0C1EFCEC7600728BDE /* Info.plist */,
+				A994C7BA1F009DE80058C8A1 /* video.plist */,
 				A947CBFB1EFCEC7600728BDE /* Supporting Files */,
 			);
 			path = VideoPlayer;
@@ -190,6 +226,7 @@
 			children = (
 				A947CC2F1EFCED9F00728BDE /* VideoPlayerControl.h */,
 				A947CC301EFCED9F00728BDE /* VideoPlayerControl.m */,
+				A994C7C81F014C380058C8A1 /* VideoPlayerControlDelegate.h */,
 				A947CC311EFCED9F00728BDE /* VideoPlayerModel.h */,
 				A947CC321EFCED9F00728BDE /* VideoPlayerModel.m */,
 				A947CC331EFCED9F00728BDE /* VideoPlayerView.h */,
@@ -221,6 +258,17 @@
 				A947CC451EFCEDAD00728BDE /* UIView+Extension.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		A947CC4B1EFCF8BF00728BDE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A947CC4C1EFCF8BF00728BDE /* BaseNavigationController.h */,
+				A947CC4D1EFCF8BF00728BDE /* BaseNavigationController.m */,
+				A947CC501EFCF8BF00728BDE /* SuperViewController.h */,
+				A947CC511EFCF8BF00728BDE /* SuperViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		C281BA4197E4AB37228B5C2A /* Pods */ = {
@@ -344,6 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A994C7BB1F009DE80058C8A1 /* video.plist in Resources */,
 				A947CC0B1EFCEC7600728BDE /* LaunchScreen.storyboard in Resources */,
 				A947CC081EFCEC7600728BDE /* Assets.xcassets in Resources */,
 				A947CC061EFCEC7600728BDE /* Main.storyboard in Resources */,
@@ -419,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A947CC541EFCF8BF00728BDE /* SuperViewController.m in Sources */,
 				A947CC3B1EFCEDA700728BDE /* NetworkTool.m in Sources */,
 				A947CC351EFCED9F00728BDE /* VideoPlayerControl.m in Sources */,
 				A947CC491EFCEDAD00728BDE /* UIView+Extension.m in Sources */,
@@ -427,8 +477,12 @@
 				A947CC001EFCEC7600728BDE /* AppDelegate.m in Sources */,
 				A947CBFD1EFCEC7600728BDE /* main.m in Sources */,
 				A947CC371EFCED9F00728BDE /* VideoPlayerView.m in Sources */,
+				A994C7B61F009B620058C8A1 /* VideoListViewController.m in Sources */,
+				A947CC521EFCF8BF00728BDE /* BaseNavigationController.m in Sources */,
 				A947CC481EFCEDAD00728BDE /* UIColor+Extension.m in Sources */,
 				A947CC471EFCEDAD00728BDE /* UIButton+Extension.m in Sources */,
+				A994C7BE1F00A5BC0058C8A1 /* VideoListCell.m in Sources */,
+				A994C7B91F009C510058C8A1 /* PlayViewController.m in Sources */,
 				A947CC461EFCEDAD00728BDE /* NSString+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,9 +634,11 @@
 				DEVELOPMENT_TEAM = 4B5SDBMXNK;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/VideoPlayer/PrefixHeader.pch";
 				INFOPLIST_FILE = VideoPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cyy.VideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -594,9 +650,11 @@
 				DEVELOPMENT_TEAM = 4B5SDBMXNK;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/VideoPlayer/PrefixHeader.pch";
 				INFOPLIST_FILE = VideoPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cyy.VideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -669,6 +727,7 @@
 				A947CC271EFCEC7600728BDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A947CC281EFCEC7600728BDE /* Build configuration list for PBXNativeTarget "VideoPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -677,6 +736,7 @@
 				A947CC2A1EFCEC7600728BDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A947CC2B1EFCEC7600728BDE /* Build configuration list for PBXNativeTarget "VideoPlayerUITests" */ = {
 			isa = XCConfigurationList;
@@ -685,6 +745,7 @@
 				A947CC2D1EFCEC7600728BDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
