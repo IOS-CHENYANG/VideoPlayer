@@ -22,4 +22,6 @@
 //@property (nonatomic,copy) void (^play) ();
 //@property (nonatomic,copy) void (^pause) ();
 
+- (void)currentTime:(double)currentTime totalTime:(double)totalTime;
+
 @end

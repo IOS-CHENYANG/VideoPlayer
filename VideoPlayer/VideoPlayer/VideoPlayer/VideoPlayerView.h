@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class VideoPlayerControl;
 @class VideoPlayerModel;
 
 typedef NS_ENUM(NSInteger,VideoGravity) {
@@ -20,12 +21,16 @@ typedef NS_ENUM(NSInteger,VideoGravity) {
 
 @property (nonatomic,assign) VideoGravity videoGravity; // 填充模式
 
-- (void)configPlayerWithControl:(UIControl *)control Model:(VideoPlayerModel *)model;
-
+- (void)configPlayerWithControl:(VideoPlayerControl *)control Model:(VideoPlayerModel *)model;
+// 播放
 - (void)play;
-
+// 暂停
 - (void)pause;
-
+// 销毁
 - (void)destroyPlayer;
+// 当前播放时间
+- (double)currentTime;
+// 总时长
+- (double)duration;
 
 @end

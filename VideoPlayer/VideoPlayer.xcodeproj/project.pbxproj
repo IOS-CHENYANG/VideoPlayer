@@ -31,6 +31,7 @@
 		A994C7BB1F009DE80058C8A1 /* video.plist in Resources */ = {isa = PBXBuildFile; fileRef = A994C7BA1F009DE80058C8A1 /* video.plist */; };
 		A994C7BE1F00A5BC0058C8A1 /* VideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A994C7BD1F00A5BC0058C8A1 /* VideoListCell.m */; };
 		A994C7C61F00BB580058C8A1 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A994C7C51F00BB580058C8A1 /* VideoToolbox.framework */; };
+		A99757601F024E3900B5EB0A /* FullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A997575F1F024E3900B5EB0A /* FullScreenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		A994C7C31F00B5C10058C8A1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A994C7C51F00BB580058C8A1 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A994C7C81F014C380058C8A1 /* VideoPlayerControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerControlDelegate.h; sourceTree = "<group>"; };
+		A997575E1F024E3900B5EB0A /* FullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenViewController.h; sourceTree = "<group>"; };
+		A997575F1F024E3900B5EB0A /* FullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				A994C7BD1F00A5BC0058C8A1 /* VideoListCell.m */,
 				A994C7B71F009C510058C8A1 /* PlayViewController.h */,
 				A994C7B81F009C510058C8A1 /* PlayViewController.m */,
+				A997575E1F024E3900B5EB0A /* FullScreenViewController.h */,
+				A997575F1F024E3900B5EB0A /* FullScreenViewController.m */,
 				A947CC041EFCEC7600728BDE /* Main.storyboard */,
 				A947CC071EFCEC7600728BDE /* Assets.xcassets */,
 				A947CC091EFCEC7600728BDE /* LaunchScreen.storyboard */,
@@ -468,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A99757601F024E3900B5EB0A /* FullScreenViewController.m in Sources */,
 				A947CC541EFCF8BF00728BDE /* SuperViewController.m in Sources */,
 				A947CC3B1EFCEDA700728BDE /* NetworkTool.m in Sources */,
 				A947CC351EFCED9F00728BDE /* VideoPlayerControl.m in Sources */,

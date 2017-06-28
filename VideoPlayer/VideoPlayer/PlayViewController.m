@@ -50,6 +50,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 
@@ -58,33 +60,47 @@
 {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
-    if (orientation == UIInterfaceOrientationLandscapeRight) {
-        self.navigationController.navigationBarHidden = YES;
-        self.playerView.transform =CGAffineTransformMakeRotation(M_PI_2);
-        self.playerView.frame = self.view.bounds;
-        self.playerControl.isFullScreen = YES;
-        
-    }else if (orientation == UIInterfaceOrientationLandscapeLeft) {
-        self.navigationController.navigationBarHidden = YES;
-        self.playerView.transform = CGAffineTransformMakeRotation(-M_PI_2);
-        self.playerView.frame = self.view.bounds;
-        self.playerControl.isFullScreen = YES;
-    }else {
-        self.playerView.transform = CGAffineTransformMakeRotation(0);
-        self.playerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width * 9 / 16);
-        self.navigationController.navigationBarHidden = NO;
-        self.playerControl.isFullScreen = NO;
-    }
-    self.playerControl.frame = self.playerView.bounds;
-    
-    // 更新约束
-    [self.playerControl setNeedsUpdateConstraints];
-    [self.playerControl updateConstraintsIfNeeded];
     [UIView animateWithDuration:0.4 animations:^{
+        
+        if (orientation == UIInterfaceOrientationLandscapeRight) {
+            self.navigationController.navigationBarHidden = YES;
+            self.playerView.transform =CGAffineTransformMakeRotation(M_PI_2);
+            self.playerView.frame = self.view.bounds;
+            self.playerControl.isFullScreen = YES;
+            
+        }else if (orientation == UIInterfaceOrientationLandscapeLeft) {
+            self.navigationController.navigationBarHidden = YES;
+            self.playerView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+            self.playerView.frame = self.view.bounds;
+            self.playerControl.isFullScreen = YES;
+        }else {
+            self.playerView.transform = CGAffineTransformMakeRotation(0);
+            self.playerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width * 9 / 16);
+            self.navigationController.navigationBarHidden = NO;
+            self.playerControl.isFullScreen = NO;
+        }
+        self.playerControl.frame = self.playerView.bounds;
+        
+        // 更新约束
+        [self.playerControl setNeedsUpdateConstraints];
+        [self.playerControl updateConstraintsIfNeeded];
         [self.playerControl layoutIfNeeded];
+        
     }];
-
 }
+
+#pragma mark - 进入前后台
+
+- (void)appDidEnterBackground {
+    NSLog(@"进入后台");
+    [self.playerView pause];
+}
+
+- (void)appWillEnterForeground {
+    NSLog(@"进入前台");
+    [self.playerView play];
+}
+
 
 #pragma mark - VideoPlayerControlDelegate
 

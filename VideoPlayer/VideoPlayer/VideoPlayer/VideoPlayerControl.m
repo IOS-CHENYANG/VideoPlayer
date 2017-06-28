@@ -36,6 +36,9 @@
 @end
 
 @implementation VideoPlayerControl
+{
+    NSString *_totalTimeStr;
+}
 
 #pragma mark - 初始化
 
@@ -46,6 +49,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        
+        _totalTimeStr = @"00:00";
+        
         [self addSubview:self.placeholderImageView];
         [self addSubview:self.topPanelImageView];
         [self addSubview:self.bottomPanelImageView];
@@ -62,70 +68,67 @@
         [self.bottomPanelImageView addSubview:self.totalTimeLabel];
         [self.bottomPanelImageView addSubview:self.fullScreenButton];
         
-//        [self makeSubViewsConstraints];
-        
-        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
 }
 
-+ (BOOL)requiresConstraintBasedLayout
-{
-    return YES;
-}
-
 - (void)updateConstraints {
     
-    NSLog(@"----------- updateConstraints -----------");
     if (self.isFullScreen) {
-//        [self.topPanelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.mas_top).offset(0);
-//            make.leading.and.trailing.equalTo(self);
-//            make.height.mas_equalTo(44);
-//        }];
 
         NSLog(@"-----全屏 ---------------");
+        self.totalTimeLabel.text = _totalTimeStr;
+        [self.fullScreenButton setImage:[UIImage imageNamed:@"Video_player_shrink_"] forState:UIControlStateNormal];
         
     }else {
-        
-        [self.bottomPanelImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(39);
-            make.leading.trailing.equalTo(self);
-            make.bottom.equalTo(self);
-        }];
-        [self.playButton mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.height.mas_equalTo(36);
-            make.left.equalTo(self.bottomPanelImageView.mas_left).offset(6);
-            make.centerY.equalTo(self.bottomPanelImageView.mas_centerY);
-        }];
-        [self.fullScreenButton mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.height.mas_equalTo(18);
-            make.right.equalTo(self.bottomPanelImageView.mas_right).offset(-12);
-            make.centerY.equalTo(self.bottomPanelImageView.mas_centerY);
-        }];
-        [self.totalTimeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(12);
-            make.centerY.equalTo(self.fullScreenButton.mas_centerY);
-            make.right.equalTo(self.fullScreenButton.mas_left).offset(-12);
-        }];
-        [self.currentTimeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(12);
-            make.centerY.equalTo(self.fullScreenButton.mas_centerY);
-            make.right.equalTo(self.totalTimeLabel.mas_left).offset(0);
-            make.left.equalTo(self.slider.mas_right).offset(12);
-        }];
-        
-        [self.slider mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.playButton.mas_right).offset(12);
-            make.centerY.equalTo(self.playButton.mas_centerY);
-            make.right.equalTo(self.currentTimeLabel.mas_left).offset(-12);
-        }];
+        self.totalTimeLabel.text = [NSString stringWithFormat:@"/%@",_totalTimeStr];
+        [self.fullScreenButton setImage:[UIImage imageNamed:@"fullscreen_ico_"] forState:UIControlStateNormal];
     }
     
+    [self.bottomPanelImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(39);
+        make.leading.trailing.equalTo(self);
+        make.bottom.equalTo(self);
+    }];
+    [self.playButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(36);
+        make.left.equalTo(self.bottomPanelImageView.mas_left).offset(6);
+        make.centerY.equalTo(self.bottomPanelImageView.mas_centerY);
+    }];
+    [self.fullScreenButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(18);
+        make.right.equalTo(self.bottomPanelImageView.mas_right).offset(-12);
+        make.centerY.equalTo(self.bottomPanelImageView.mas_centerY);
+    }];
+    [self.totalTimeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(12);
+        make.centerY.equalTo(self.fullScreenButton.mas_centerY);
+        make.right.equalTo(self.fullScreenButton.mas_left).offset(-12);
+    }];
+    [self.currentTimeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(12);
+        make.centerY.equalTo(self.fullScreenButton.mas_centerY);
+        make.right.equalTo(self.totalTimeLabel.mas_left).offset(0);
+        make.left.equalTo(self.slider.mas_right).offset(12);
+    }];
+    
+    [self.slider mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.playButton.mas_right).offset(12);
+        make.centerY.equalTo(self.playButton.mas_centerY);
+        make.right.equalTo(self.currentTimeLabel.mas_left).offset(-12);
+    }];
+
     [super updateConstraints];
+}
+
+- (void)currentTime:(double)currentTime totalTime:(double)totalTime {
+    self.currentTimeLabel.text = [self convertTime:currentTime];
+    if (self.isFullScreen) {
+        self.totalTimeLabel.text = [self convertTime:totalTime];
+    }else {
+        self.totalTimeLabel.text = [NSString stringWithFormat:@"/%@",[self convertTime:totalTime]];
+    }
+    self.slider.value = currentTime / totalTime;
 }
 
 #pragma mark - 响应事件
@@ -169,57 +172,20 @@
 
 - (void)fullScreenButtonClick:(UIButton *)sender {
     NSLog(@"全屏按钮");
-    if ([self.delegate respondsToSelector:@selector(fullscreen:)]) {
-        [self.delegate fullscreen:sender];
+    if ([self.delegate respondsToSelector:@selector(fullscreen:playerControl:)]) {
+        [self.delegate fullscreen:sender playerControl:self];
     }
 }
 
-- (void)appDidEnterBackground {
-    NSLog(@"进入后台");
-}
-
-- (void)appWillEnterForeground {
-    NSLog(@"进入前台");
-}
-
-- (void)deviceOrientationDidChange {
-    NSLog(@"设置旋转");
-}
-
-#pragma mark - 设置约束
-
-- (void)makeSubViewsConstraints {
-    
-    
-    
-    
-    [self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsZero);
-    }];
-    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.topPanelImageView.mas_leading).offset(10);
-        make.top.equalTo(self.topPanelImageView.mas_top).offset(3);
-        make.height.and.width.mas_equalTo(40);
-    }];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.backButton.mas_trailing).offset(5);
-        make.centerY.equalTo(self.backButton.mas_centerY);
-        make.trailing.equalTo(self.topPanelImageView);
-    }];
-    
-//    [self.bottomPanelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        
-//    }];
-}
-
-- (void)updateSubViewsConstraints {
-    
-    [self.topPanelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(0);
-        make.leading.and.trailing.equalTo(self);
-        make.height.mas_equalTo(44);
-    }];
-
+- (NSString *)convertTime:(double)second{
+    NSString *str_hour = [NSString stringWithFormat:@"%02d",(int)second/3600];
+    NSString *str_minute = [NSString stringWithFormat:@"%02d",(int)(int)second%3600/60];
+    NSString *str_second = [NSString stringWithFormat:@"%02d",(int)second%60];
+    if (second/3600 >= 1) {
+        return [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+    }else {
+        return [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
+    }
 }
 
 #pragma mark - 懒加载
@@ -302,7 +268,6 @@
         _currentTimeLabel.font = [UIFont systemFontOfSize:12];
         _currentTimeLabel.textAlignment = NSTextAlignmentCenter;
         _currentTimeLabel.text = @"00:00";
-        _currentTimeLabel.backgroundColor = [UIColor redColor];
     }
     return _currentTimeLabel;
 }
@@ -338,7 +303,6 @@
         _totalTimeLabel.font = [UIFont systemFontOfSize:12];
         _totalTimeLabel.textAlignment = NSTextAlignmentCenter;
         _totalTimeLabel.text = @"/00:00";
-        _totalTimeLabel.backgroundColor = [UIColor greenColor];
     }
     return _totalTimeLabel;
 }
@@ -352,6 +316,7 @@
     }
     return _fullScreenButton;
 }
+
 
 @end
 

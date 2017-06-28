@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class VideoPlayerControl;
+
 @protocol VideoPlayerControlDelegate <NSObject>
 
 // 播放
@@ -15,6 +17,6 @@
 // 暂停
 - (void)pause:(UIButton *)playButton;
 // 全屏
-- (void)fullscreen:(UIButton *)fullscreenButton;
+- (void)fullscreen:(UIButton *)fullscreenButton playerControl:(VideoPlayerControl *)control;
 
 @end
