@@ -33,6 +33,10 @@
     delegate.supportLandscapeOrientation = NO;
 }
 
+- (void)fullscreen:(UIButton *)fullscreenButton playerControl:(VideoPlayerControl *)control {
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.videoTitle;

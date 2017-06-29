@@ -61,11 +61,13 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
     
     self.playerModel = model;
     self.backgroundColor = [UIColor blackColor];
+    
     self.urlAsset = [AVURLAsset assetWithURL:self.playerModel.playUrl];
     self.playerItem = [AVPlayerItem playerItemWithAsset:self.urlAsset];
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     [self.layer addSublayer:self.playerLayer];
+    
     if (control) {
         self.playerControl = control;
         [self addSubview:self.playerControl];
@@ -104,6 +106,7 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
             default:
                 break;
         }
+        
     }else if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
         
         
@@ -120,12 +123,12 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
     __weak typeof(self) weakSelf = self;
     // 添加定时器，更新播放进度
+    
     self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
         // 更新播放进度
         double currentTime =  CMTimeGetSeconds([weakSelf.player currentTime]);
         weakSelf.currentTime = currentTime;
         [weakSelf.playerControl currentTime:currentTime totalTime:[weakSelf duration]];
-        
     }];
 }
 
